@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日书籍推荐</title>
+<style>
+  /* 微信公众号兼容样式 - 复制 section.article 内部内容即可 */
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
+  .article { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; }
+  .header { text-align: center; padding-bottom: 20px; border-bottom: 2px solid #07C160; margin-bottom: 25px; }
+  .header h1 { font-size: 22px; color: #07C160; margin: 0 0 8px 0; }
+  .header .date { font-size: 14px; color: #999; }
+  .book-title { font-size: 24px; font-weight: bold; color: #333; text-align: center; margin: 20px 0 5px 0; }
+  .book-meta { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; line-height: 1.8; }
+  .section-title { font-size: 18px; font-weight: bold; color: #07C160; border-left: 4px solid #07C160; padding-left: 12px; margin: 30px 0 15px 0; }
+  .section-content { font-size: 15px; color: #333; line-height: 1.8; margin-bottom: 15px; }
+  .chapter-item { margin-bottom: 15px; }
+  .chapter-name { font-weight: bold; color: #333; font-size: 15px; }
+  .chapter-desc { color: #555; font-size: 14px; line-height: 1.7; margin-top: 4px; }
+  .insight-item { margin-bottom: 12px; }
+  .insight-title { font-weight: bold; color: #333; }
+  .insight-desc { color: #555; font-size: 14px; }
+  .case-box { background: #f9f9f9; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+  .case-title { font-weight: bold; color: #333; margin-bottom: 8px; }
+  .case-content { color: #555; font-size: 14px; line-height: 1.7; }
+  .case-insight { color: #07C160; font-size: 13px; font-weight: bold; margin-top: 8px; }
+  .action-item { background: #fff0f0; border-left: 3px solid #e74c3c; border-radius: 0 8px 8px 0; padding: 12px 15px; margin-bottom: 12px; }
+  .action-title { font-weight: bold; color: #e74c3c; margin-bottom: 4px; }
+  .action-desc { color: #555; font-size: 14px; line-height: 1.6; }
+  .action-time { color: #999; font-size: 12px; margin-top: 4px; }
+  .review-box { background: #f0faf0; border-left: 3px solid #07C160; padding: 15px 20px; margin: 15px 0; font-size: 15px; color: #444; line-height: 1.8; font-style: italic; }
+  .question-item { background: #fff8e6; border-radius: 8px; padding: 12px 15px; margin-bottom: 10px; font-size: 14px; color: #333; line-height: 1.6; }
+  .question-num { color: #e6a23c; font-weight: bold; }
+  .feynman-box { background: #e8f4fd; border-radius: 8px; padding: 15px; margin: 15px 0; }
+  .feynman-main { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 10px; }
+  .feynman-simple { font-size: 14px; color: #666; }
+  .link-box { background: #f5f5f5; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 14px; color: #555; line-height: 1.7; }
+  .divider { border: none; border-top: 1px dashed #ddd; margin: 25px 0; }
+  .footer { text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+<section class="article">
+
+<div class="header">
+  <h1>每日书籍推荐</h1>
+  <div class="date">{{DATE}}</div>
+</div>
+
+<div class="book-title">《{{BOOK_TITLE}}》</div>
+<div class="book-meta">
+  {{BOOK_TITLE_EN}}<br>
+  作者：{{AUTHOR}}<br>
+  类别：{{CATEGORY}}
+</div>
+
+<div class="section-title">推荐理由</div>
+<div class="section-content">{{REASON}}</div>
+
+<hr class="divider">
+
+<div class="section-title">章节详解</div>
+{{CHAPTERS}}
+
+<hr class="divider">
+
+<div class="section-title">核心观点</div>
+{{INSIGHTS}}
+
+<hr class="divider">
+
+<div class="section-title">经典案例</div>
+{{CASES}}
+
+<hr class="divider">
+
+<div class="section-title">深度读后感</div>
+<div class="review-box">{{REVIEW}}</div>
+
+<hr class="divider">
+
+<div class="section-title">思考题</div>
+{{QUESTIONS}}
+
+<hr class="divider">
+
+<div class="section-title">费曼检验</div>
+<div class="feynman-box">
+  <div class="feynman-main">一句话说清这本书：{{FEYNMAN_MAIN}}</div>
+  <div class="feynman-simple">解释给小学生听：{{FEYNMAN_SIMPLE}}</div>
+</div>
+
+<hr class="divider">
+
+<div class="section-title">读后输出行动</div>
+{{ACTIONS}}
+
+<hr class="divider">
+
+<div class="section-title">延伸阅读</div>
+<div class="link-box">{{CONNECTIONS}}</div>
+
+<div class="footer">
+  每日一本好书，用苏格拉底提问和费曼学习法深度解读<br>
+  Powered by AI 阅读学习系统
+</div>
+
+</section>
+</body>
+</html>
