@@ -1,168 +1,110 @@
-# CFP Exam Study Repository
+# Book Reading Learning System (书籍阅读学习系统)
 
-🎉 **I PASSED the CFP Exam on November 10, 2025!** 🎉
+An AI-powered guided learning system for deep reading and understanding of books, using Claude Code as an interactive reading companion with Socratic teaching methodology.
 
-This is my personal study repository that helped me pass the Certified Financial Planner (CFP) exam on my second attempt. After failing in November 2024, I rebuilt my study approach using AI-powered guided learning with Claude Code - and it made all the difference.
-
-**Thanks to AI and Claude Code**, I went from a failed attempt to **82% mastery** (60/73 topics) across 23 focused study sessions, ultimately passing the exam.
-
-**Let's connect on LinkedIn**: [linkedin.com/in/chenran818](https://linkedin.com/in/chenran818) ,**Twitter(X)** [https://x.com/chenran818](https://x.com/chenran818) 和 **知乎**[https://www.zhihu.com/people/chenran](https://www.zhihu.com/people/chenran)
+**Let's connect**: [LinkedIn](https://linkedin.com/in/chenran818) | [Twitter(X)](https://x.com/chenran818) | [知乎](https://www.zhihu.com/people/chenran)
 
 ---
 
-**Final Exam Stats**:
-- **Exam Date**: November 10, 2025 ✅ PASSED
-- **Final Progress**: 82% (60/73 CFP topics mastered)
-- **Study Sessions**: 23 sessions (Oct 11 - Nov 7, 2025)
-- **Study Materials**: 2024 Dalton Review slides (not included in repo)
-
 ## How This Works
 
-This repository uses Claude Code as an interactive CFP exam tutor that:
-- Teaches using the Socratic method (asking what you know first)
-- Provides concise (~200 word) explanations
+This repository uses Claude Code as an interactive reading companion that:
+
+- Teaches using the **Socratic method** (asking what you know first, guiding discovery)
+- Engages in deep discussion of each chapter's concepts (~200 word focused explanations)
 - Verifies your understanding with follow-up questions
 - Adapts teaching style based on your responses
-- **Tracks every learning session to personalize your study experience**
+- **Tracks every reading session** to personalize your learning experience
+- **Connects ideas across books** as your reading library grows
+- **Supports bilingual interaction** (中英双语)
 
 ## Repository Structure
 
-```
-/sessions/                    # 23 daily learning sessions documented
-  /2025-10-11/               # One folder per study day
-  /2025-10-17/               # Sessions from Oct 11 - Nov 7
-  /2025-11-07/
-  SESSION-TEMPLATE.md        # Template for documenting sessions
+```text
+/books/                         # One folder per book
+  /[book-name]/
+    book-info.md               # Book metadata, chapters, reading plan
+    reading-progress.md        # Chapter-by-chapter progress tracker
+    /sessions/
+      /YYYY-MM-DD/
+        session-notes.md       # Daily reading discussion notes
 
-/progress/                    # Single source of truth for exam prep
-  cfp-study-tracker.md       # Comprehensive tracker with:
-                             # - All 73 CFP topics mapped
-                             # - Topics mastered (60/73)
-                             # - Knowledge gaps identified
-                             # - Study plan for remaining days
+/templates/                     # Templates for new books and sessions
+  SESSION-TEMPLATE.md
+  BOOK-SETUP-TEMPLATE.md
 
-CLAUDE.md                     # AI tutor instructions (Socratic method)
-README.md                     # This file
+CLAUDE.md                       # AI reading companion instructions
+README.md                       # This file
 ```
 
 ## How to Use
 
-### Daily Study Sessions
+### Start Reading a New Book
 
 1. Open Claude Code in this repository
-2. Ask questions about CFP topics naturally - just like talking to a tutor
-3. Answer the comprehension check questions Claude asks
-4. After each session, Claude will automatically document:
-   - What you learned
-   - What you struggled with
-   - What you mastered
-   - What to review next
+2. Tell Claude which book you want to read (e.g., "I want to start reading 金字塔原理")
+3. Claude will set up the book folder, chapter listing, and reading plan for you
+
+### Daily Reading Sessions
+
+1. Read a chapter or section of your book
+2. Open Claude Code and discuss what you read
+3. Claude will:
+   - Ask about your initial impressions
+   - Guide you to deeper understanding through questions
+   - Check your comprehension
+   - Document the session automatically
 
 ### Review Sessions
 
-When you want to review, simply ask Claude:
-- "Let's review topics I've struggled with"
-- "What should I focus on today?"
-- "Quiz me on my weak areas"
-- "Show me my progress"
+Ask Claude anytime:
 
-Claude will read your session history and create a personalized review based on your past performance.
+- "Let's review the concepts from Chapter 3"
+- "What should I focus on before reading the next chapter?"
+- "Quiz me on what I've learned so far"
+- "How does this book connect to [other book]?"
 
 ### Track Your Progress
 
-View your comprehensive study tracker at `/progress/cfp-study-tracker.md` to see:
-- Overall exam readiness (currently 82%)
-- Which domains are complete (4 major domains ✅)
-- Remaining knowledge gaps
-- Prioritized study plan for exam day
+Each book has its own `reading-progress.md` showing:
 
-## Study Philosophy
+- Chapter-by-chapter completion status
+- Concepts mastered with confidence levels
+- Areas that need review
+- Cross-book connections discovered
 
-**Guided Learning Approach:**
-- Conversational and judgment-free
-- Builds on your existing knowledge
-- Checks understanding before moving forward
-- Adapts to your learning style
-- Focuses on deep understanding, not just memorization
+## Reading Depth Levels
 
-## Study Materials
+The system guides you through four levels of understanding:
 
-I used the **2024 Dalton Review Slides** for my preparation (not included in this repo due to copyright). You can use your own CFP study materials - the AI tutor methodology works with any content.
+1. **Surface Reading** - What does the author say?
+2. **Analytical Reading** - Why does the author make these arguments?
+3. **Critical Reading** - Do you agree? What's your own take?
+4. **Connective Reading** - How do ideas link across chapters and books?
 
-## Free Study Resources
-
-In addition to the Dalton Review materials, here are some excellent **free resources** that can supplement your CFP exam prep:
-
-**Podcasts & Audio:**
-- [Open Exam Prep Podcast](https://open.spotify.com/show/55EmWfdtPaK641q4Rk3mI1) - Free CFP exam prep podcast on Spotify
-- [Financial Planning Essentials Playlist](https://open.spotify.com/playlist/6GUIZvnpaiOiYmXkanqwZ8) - Study music playlist on Spotify
-
-**Video Content:**
-- [Open Exam Prep YouTube](https://www.youtube.com/@Open-exam-prep) - Free video content covering CFP exam topics
-
-**Website:**
-- [open-exam-prep.com](https://open-exam-prep.com/) - Additional free resources and study materials
-
-These free resources are great for passive learning during commutes, workouts, or downtime.
-
-## Key Features
-
-**Personalized Learning**:
-- 23 documented study sessions with detailed notes
-- Socratic teaching method (builds on what you already know)
-- Adaptive explanations based on your responses
-- Practice problems tailored to your weak areas
-
-**Comprehensive Tracking**:
-- Every session automatically documented
-- Knowledge gaps identified and tracked
-- Topics mastered with confidence levels
-- Progress measured against exam weights
-
-**Evidence-Based Approach**:
-- All answers verified with authoritative sources (IRS.gov, CFP Board)
-- No guessing on technical questions
-- Citations provided for complex rules
-- Focus on understanding "why" not just "what"
-
-## How to Use This Repository for Your Own CFP Exam Prep
-
-Want to use this AI-powered study system for your own CFP exam preparation? It's simple:
+## Use This Repository for Your Own Reading
 
 1. **Clone this repository**:
+
    ```bash
    git clone https://github.com/chenran818/CFP-Study.git
    cd CFP-Study
    ```
 
-2. **Clear my study history** (start fresh):
+2. **Run Claude Code**:
+
    ```bash
-   rm -rf progress/ sessions/
+   claude
    ```
 
-3. **Run Claude Code**:
-   ```bash
-   claude-code
-   ```
+3. **Start reading!** Tell Claude which book you want to begin, and the system handles the rest.
 
-4. **That's it!** Start asking CFP questions and Claude will:
-   - Teach you using the Socratic method
-   - Create new `progress/` and `sessions/` folders automatically
-   - Track your learning journey just like it did for me
-   - Adapt to your learning style
-
-The `CLAUDE.md` file contains all the instructions for how Claude should tutor you. **It works magically!**
-
-## Getting Started
-
-Just start a conversation with Claude Code and ask your first CFP question. Claude will guide you from there while automatically tracking your progress.
+The `CLAUDE.md` file contains all the instructions for how Claude should guide your reading.
 
 ---
 
-## About the Author
+## About
 
-After failing the CFP exam in November 2024, I knew I needed a different approach. Traditional study methods weren't working for me. Using Claude Code as my AI study partner transformed my preparation - the Socratic teaching method, personalized feedback, and systematic progress tracking made complex financial planning concepts finally click.
-
-If you're preparing for the CFP exam or any professional certification, I hope this repository inspires you to leverage AI tools in your learning journey.
+After successfully using this AI-powered learning system to pass the CFP exam in November 2025, I adapted the same Socratic teaching methodology for general book reading and deep learning. The guided discussion approach transforms passive reading into active understanding.
 
 **Connect with me**: [linkedin.com/in/chenran818](https://linkedin.com/in/chenran818)
