@@ -114,4 +114,40 @@ After successfully using this AI-powered learning system to pass the CFP exam in
 Claude 生成 1 本推荐 → Python 分段推送钉钉 → 重命名为 书名.md → 生成 书名.html
 
 要启用定时任务需以管理员权限运行：
+任务名称：BookRecommend
 powershell -ExecutionPolicy Bypass -File scripts\setup-daily-task.ps1
+
+停掉定时任务：
+方法一：打开 PowerShell 再执行
+1️⃣ 按 Win + R
+2️⃣ 输入：powershell
+3️⃣ 在 PowerShell 里执行：
+Unregister-ScheduledTask -TaskName "BookRecommend" -Confirm:$false
+
+方法二：在 CMD 里强制调用 PowerShell
+powershell -Command "Unregister-ScheduledTask -TaskName 'BookRecommend' -Confirm:$false"
+
+方法三（用纯 CMD 命令删除）
+schtasks /Delete /TN "BookRecommend" /F
+
+
+## 总结新增的本地脚本体系：
+
+脚本	替代了什么	节省 token
+fix-md-format.py	Claude 手动修复格式	每次修复节省 ~200 token
+update-history.py	SKILL.md Step 5（Claude 写 history.md）	每次推荐节省 ~300 token
+progress.py	/progress skill	完全替代，每次节省 ~500 token
+自动流程（daily-recommend.sh 每 10 分钟）：
+
+
+Step 1:   claude --print "/recommend"  ← 唯一需要 token 的步骤
+Step 1.5: fix-md-format.py            ← 本地格式修复
+Step 1.6: update-history.py           ← 本地更新历史
+Step 2:   重命名 MD 文件              ← 本地
+Step 3:   生成微信 HTML               ← 本地
+Step 4:   推送钉钉                    ← 本地
+查看阅读进度不再需要 Claude：
+
+
+python3 scripts/progress.py
+python3 scripts/progress.py --stats

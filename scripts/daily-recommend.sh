@@ -39,12 +39,21 @@ fi
 # Step 1: 调用 Claude CLI 生成完整推荐（消耗 token）
 # ============================================================
 log "Step 1: Generating recommendation via Claude CLI..."
+# 清除嵌套会话保护变量，Task Scheduler 继承自 Claude Code 会话时会导致失败
+unset CLAUDECODE
 claude --print "/recommend" > "$TEMP_FILE" 2>&1
 
 if [ $? -ne 0 ]; then
     log "Error: Claude CLI failed"
     exit 1
 fi
+
+# Step 1.5: 本地后处理（零 token）
+log "Step 1.5: Fixing MD format locally..."
+python3 "$REPO_DIR/scripts/fix-md-format.py" "$TEMP_FILE"
+
+log "Step 1.6: Updating recommendation history locally..."
+python3 "$REPO_DIR/scripts/update-history.py" "$TEMP_FILE"
 
 # 验证生成的内容是否完整（至少包含 --- 分隔的多个部分）
 SECTION_COUNT=$(grep -c '^---$' "$TEMP_FILE" 2>/dev/null || echo 0)

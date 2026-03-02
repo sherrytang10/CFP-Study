@@ -2,7 +2,10 @@
 scripts/dingtalk-config.env
 
 # 每日推荐输出（MD 和 HTML 均用书名命名，history.md 除外）
-recommendations/*.md
 !recommendations/history.md
 recommendations/*.html
 recommendations/*.log
+web-cloner/logs/*
+web-cloner/node_modules
+
+

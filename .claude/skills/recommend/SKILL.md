@@ -184,9 +184,7 @@ allowed-tools: Read, Write, Edit, Glob, WebSearch
    想开始读这本书？输入 /new-book [书名]
    ```
 
-5. **更新推荐记录**
-   - 将本次推荐追加到 `recommendations/history.md`
-   - 记录：日期、书名、作者、类别
+5. ~~**更新推荐记录**~~（此步骤已由 `scripts/update-history.py` 本地自动完成，Claude 无需操作 history.md）
 
 ### 质量要求
 
