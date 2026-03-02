@@ -108,3 +108,10 @@ The `CLAUDE.md` file contains all the instructions for how Claude should guide y
 After successfully using this AI-powered learning system to pass the CFP exam in November 2025, I adapted the same Socratic teaching methodology for general book reading and deep learning. The guided discussion approach transforms passive reading into active understanding.
 
 **Connect with me**: [linkedin.com/in/chenran818](https://linkedin.com/in/chenran818)
+
+
+执行流程：
+Claude 生成 1 本推荐 → Python 分段推送钉钉 → 重命名为 书名.md → 生成 书名.html
+
+要启用定时任务需以管理员权限运行：
+powershell -ExecutionPolicy Bypass -File scripts\setup-daily-task.ps1

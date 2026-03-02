@@ -1,7 +1,7 @@
-﻿# Setup Windows Scheduled Task: Daily book recommendation at 8:30 AM
+# Setup Windows Scheduled Task: Book recommendation every 10 minutes
 # Run this script with Administrator privileges
 
-$taskName = "DailyBookRecommend"
+$taskName = "BookRecommend"
 $repoDir = "d:\code\AISkills\CFP-Study"
 $scriptPath = "$repoDir\scripts\daily-recommend.sh"
 
@@ -12,39 +12,58 @@ if (-not $claudePath) {
     exit 1
 }
 
-# Remove existing task if present
-$existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
-if ($existingTask) {
-    Write-Host "Task already exists, updating..." -ForegroundColor Yellow
-    Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+# Remove existing tasks if present
+foreach ($name in @("DailyBookRecommend", $taskName)) {
+    $existingTask = Get-ScheduledTask -TaskName $name -ErrorAction SilentlyContinue
+    if ($existingTask) {
+        Write-Host "Removing existing task: $name" -ForegroundColor Yellow
+        Unregister-ScheduledTask -TaskName $name -Confirm:$false
+    }
 }
 
-# Create scheduled task
-$trigger = New-ScheduledTaskTrigger -Daily -At 8:30AM
+# Create scheduled task: every 10 minutes, repeat indefinitely
+$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date
+$trigger.Repetition = New-CimInstance -ClassName MSFT_TaskRepetitionPattern `
+    -Namespace Root/Microsoft/Windows/TaskScheduler -ClientOnly `
+    -Property @{ Interval = "PT10M" }
+
+# Find bash.exe (Git Bash)
+$bashPath = "C:\Program Files\Git\usr\bin\bash.exe"
+if (-not (Test-Path $bashPath)) {
+    $bashPath = (Get-Command bash -ErrorAction SilentlyContinue).Source
+}
+if (-not $bashPath) {
+    Write-Host "[Error] bash not found. Please install Git for Windows." -ForegroundColor Red
+    exit 1
+}
+
 $action = New-ScheduledTaskAction `
-    -Execute "bash" `
+    -Execute $bashPath `
     -Argument $scriptPath `
     -WorkingDirectory $repoDir
 
 $settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
-    -StartWhenAvailable
+    -StartWhenAvailable `
+    -MultipleInstances IgnoreNew
 
 Register-ScheduledTask `
     -TaskName $taskName `
     -Trigger $trigger `
     -Action $action `
     -Settings $settings `
-    -Description "Daily book recommendation via Claude at 8:30 AM"
+    -Description "Book recommendation every 10 minutes via Claude CLI"
 
 Write-Host ""
 Write-Host "Done! Scheduled task created successfully." -ForegroundColor Green
 Write-Host "  Task name : $taskName"
-Write-Host "  Schedule  : Daily at 8:30 AM"
-Write-Host "  Output    : $repoDir\recommendations\today.md"
+Write-Host "  Schedule  : Every 10 minutes"
+Write-Host "  Output    : $repoDir\recommendations\<book-name>.md"
+Write-Host "  Log       : $repoDir\recommendations\recommend.log"
 Write-Host ""
 Write-Host "Management commands:" -ForegroundColor Cyan
-Write-Host "  View   : Get-ScheduledTask -TaskName $taskName"
-Write-Host "  Run now: Start-ScheduledTask -TaskName $taskName"
-Write-Host "  Remove : Unregister-ScheduledTask -TaskName $taskName"
+Write-Host "  View    : Get-ScheduledTask -TaskName $taskName"
+Write-Host "  Run now : Start-ScheduledTask -TaskName $taskName"
+Write-Host "  Stop    : Stop-ScheduledTask -TaskName $taskName"
+Write-Host "  Remove  : Unregister-ScheduledTask -TaskName $taskName"

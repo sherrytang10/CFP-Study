@@ -5,3 +5,4 @@ scripts/dingtalk-config.env
 recommendations/*.md
 !recommendations/history.md
 recommendations/*.html
+recommendations/*.log
