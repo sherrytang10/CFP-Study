@@ -5,10 +5,10 @@ $bashPath = "C:\Program Files\Git\usr\bin\bash.exe"
 
 Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
 
-$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date)
+$trigger = New-ScheduledTaskTrigger -Daily -At "21:00"
 $trigger.Repetition = New-CimInstance -ClassName MSFT_TaskRepetitionPattern `
     -Namespace Root/Microsoft/Windows/TaskScheduler -ClientOnly `
-    -Property @{ Interval = "PT10M" }
+    -Property @{ Interval = "PT1H"; Duration = "PT12H30M" }
 
 $action = New-ScheduledTaskAction `
     -Execute $bashPath `
@@ -26,7 +26,7 @@ Register-ScheduledTask `
     -Trigger $trigger `
     -Action $action `
     -Settings $settings `
-    -Description "Book recommendation every 10 minutes via Claude CLI"
+    -Description "Book recommendation hourly from 21:00 to 09:30 via Claude CLI"
 
 Write-Host "Task registered. Starting now..."
 Start-ScheduledTask -TaskName $taskName

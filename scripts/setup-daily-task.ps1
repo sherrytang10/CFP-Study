@@ -1,4 +1,4 @@
-# Setup Windows Scheduled Task: Book recommendation every 10 minutes
+# Setup Windows Scheduled Task: Book recommendation hourly (21:00 ~ 09:30)
 # Run this script with Administrator privileges
 
 $taskName = "BookRecommend"
@@ -21,11 +21,11 @@ foreach ($name in @("DailyBookRecommend", $taskName)) {
     }
 }
 
-# Create scheduled task: every 10 minutes, repeat indefinitely
-$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date
+# Create scheduled task: every hour from 21:00 to 09:30 next day
+$trigger = New-ScheduledTaskTrigger -Daily -At "21:00"
 $trigger.Repetition = New-CimInstance -ClassName MSFT_TaskRepetitionPattern `
     -Namespace Root/Microsoft/Windows/TaskScheduler -ClientOnly `
-    -Property @{ Interval = "PT10M" }
+    -Property @{ Interval = "PT1H"; Duration = "PT12H30M" }
 
 # Find bash.exe (Git Bash)
 $bashPath = "C:\Program Files\Git\usr\bin\bash.exe"
@@ -53,12 +53,12 @@ Register-ScheduledTask `
     -Trigger $trigger `
     -Action $action `
     -Settings $settings `
-    -Description "Book recommendation every 10 minutes via Claude CLI"
+    -Description "Book recommendation hourly from 21:00 to 09:30 via Claude CLI"
 
 Write-Host ""
 Write-Host "Done! Scheduled task created successfully." -ForegroundColor Green
 Write-Host "  Task name : $taskName"
-Write-Host "  Schedule  : Every 10 minutes"
+Write-Host "  Schedule  : Every hour, 21:00 ~ 09:30"
 Write-Host "  Output    : $repoDir\recommendations\<book-name>.md"
 Write-Host "  Log       : $repoDir\recommendations\recommend.log"
 Write-Host ""
